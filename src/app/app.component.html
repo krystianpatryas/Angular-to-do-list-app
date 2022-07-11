@@ -1,7 +1,7 @@
 <div class="container">
   <nav class="row">
     <div class="nav-wrapper">
-      <span class="brand-logo center">{{config?.title | uppercase}}</span>
+      <span class="brand-logo center">{{ config?.title | uppercase }}</span>
     </div>
   </nav>
 
@@ -11,16 +11,28 @@
   </div>
 
   <div class="row">
-    <input class="col s8" type="text" placeholder="Dodaj zadanie i datę wykonania" (keyup)="0" #nameInput />
-    <input class="col s2 disabled" type="date" (change)="0" #dateInput />
-    <button class="btn-floating"
-      (click)="createTask(nameInput.value, dateInput.value); nameInput.value = ''; dateInput.value = '' "
-      [disabled]="nameInput.value ===''  || dateInput.value === '' ">+</button>
+    <input
+      class="col s8"
+      type="text"
+      placeholder="Dodaj zadanie i datę wykonania"
+      [(ngModel)]="taskName"
+    />
+    <input class="col s2 disabled" type="date" [(ngModel)]="taskDate" />
+    <button
+      class="btn-floating"
+      (click)="createTask()"
+      [disabled]="taskName === '' || taskDate === ''"
+    >
+      +
+    </button>
   </div>
 
   <ul class="collection">
     <li class="collection-item row" *ngFor="let task of tasks; let i = index">
-      <span class="col s10">{{i + 1}}. {{task.name}} - {{task.deadline | date: 'd.MM EEEE':'':'pl'}}</span>
+      <span class="col s10">
+        {{ i + 1 }}. {{ task.name }} -
+        {{ task.deadline | date: 'd.MM EEEE':'':'pl' }}
+      </span>
       <div class="col s2 right-align">
         <button class="btn-floating btn-small red">
           <i class="material-icons">remove</i>
@@ -31,13 +43,19 @@
       </div>
     </li>
     <li class="collection-item row">
-      <span class="col done">Sprzątanie </span>
+      <span class="col done">Sprzątanie kuwet</span>
     </li>
   </ul>
 
   <h1>Dzisiaj brak zadań :-)</h1>
 
-  <button class="btn red" (click)="clearTasks()" [disabled]="tasks.length === 0">Wyczyść</button>
+  <button
+    class="btn red"
+    (click)="clearTasks()"
+    [disabled]="tasks.length === 0"
+  >
+    Wyczyść
+  </button>
 
   <footer class="page-footer mt-5">
     <div class="footer-copyright">
