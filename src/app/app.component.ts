@@ -8,7 +8,6 @@ import { Task } from './task';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-
   config: { [key: string]: string | null };
   tasks: Task[] = [
     {
@@ -43,9 +42,7 @@ export class AppComponent {
     this.tasks = [];
   }
 
-
-
-  createTask(name:string, deadline: string) {
+  createTask(name: string, deadline: string) {
     const task: Task = {
       name: name,
       deadline: deadline,
