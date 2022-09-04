@@ -4,4 +4,4 @@
 
 3.ng serve
 
-4. open localhost:4200
+4.open localhost:4200
